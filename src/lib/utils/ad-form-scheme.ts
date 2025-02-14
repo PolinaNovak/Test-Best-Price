@@ -22,9 +22,9 @@ export const formSchema = z.object({
     .nonempty({ message: "Обязательное поле" })
     .refine(
       (value) => {
-        const hasLetters = /[a-zA-Zа-яА-Я]/.test(value); // Проверка наличия букв
-        const isNotOnlyDigits = !/^\d+$/.test(value); // Не должно быть только цифр
-        const isNotAlphanumeric = !/^[a-zA-Zа-яА-Я\d]+$/.test(value); // Не должно быть только букв и цифр
+        const hasLetters = /[a-zA-Zа-яА-Я]/.test(value);
+        const isNotOnlyDigits = !/^\d+$/.test(value);
+        const isNotAlphanumeric = !/^[a-zA-Zа-яА-Я\d]+$/.test(value);
 
         return (
           hasLetters && isNotOnlyDigits && (!isNotAlphanumeric || hasLetters)
@@ -121,58 +121,58 @@ export const formSchema = z.object({
 
 export type Form = z.infer<typeof formSchema>;
 
-export const adFormSchema = z.object({
-  title: z
-    .string()
-    .min(1, "Название не может быть пустым")
-    .regex(
-      /^[a-zA-Zа-яА-ЯёЁ]+.*$/,
-      "Название должно содержать хотя бы одно слово из букв"
-    )
-    .regex(/^(?![0-9]+)/, "Название не должно начинаться с цифр"),
+// export const adFormSchema = z.object({
+//   title: z
+//     .string()
+//     .min(1, "Название не может быть пустым")
+//     .regex(
+//       /^[a-zA-Zа-яА-ЯёЁ]+.*$/,
+//       "Название должно содержать хотя бы одно слово из букв"
+//     )
+//     .regex(/^(?![0-9]+)/, "Название не должно начинаться с цифр"),
 
-  type: z.enum(["Продаю свое", "Товар приобретен на продажу"], {
-    errorMap: () => ({ message: "Выберите вид объявления" }),
-  }),
+//   type: z.enum(["Продаю свое", "Товар приобретен на продажу"], {
+//     errorMap: () => ({ message: "Выберите вид объявления" }),
+//   }),
 
-  description: z.string().min(1, "Описание не может быть пустым"),
+//   description: z.string().min(1, "Описание не может быть пустым"),
 
-  price: z
-    .string()
-    .regex(/^\d+$/, "Цена должна содержать только цифры")
-    .transform(Number)
-    .refine((num) => num > 0, "Цена должна быть положительным числом"),
+//   price: z
+//     .string()
+//     .regex(/^\d+$/, "Цена должна содержать только цифры")
+//     .transform(Number)
+//     .refine((num) => num > 0, "Цена должна быть положительным числом"),
 
-  photos: z
-    .array(z.string().url("Некорректная ссылка на фото"))
-    .min(1, "Добавьте хотя бы одну фотографию")
-    .max(10, "Можно добавить максимум 10 фотографий"),
+//   photos: z
+//     .array(z.string().url("Некорректная ссылка на фото"))
+//     .min(1, "Добавьте хотя бы одну фотографию")
+//     .max(10, "Можно добавить максимум 10 фотографий"),
 
-  video: z
-    .string()
-    .optional()
-    .refine(
-      (val) => !val || val.startsWith("http"),
-      "Ссылка должна начинаться с 'http'"
-    )
-    .refine(
-      (val) => !val || val.includes("/"),
-      "Ссылка должна содержать символ '/'"
-    )
-    .refine(
-      (val) => !val || val.includes("."),
-      "Ссылка должна содержать символ '.'"
-    ),
+//   video: z
+//     .string()
+//     .optional()
+//     .refine(
+//       (val) => !val || val.startsWith("http"),
+//       "Ссылка должна начинаться с 'http'"
+//     )
+//     .refine(
+//       (val) => !val || val.includes("/"),
+//       "Ссылка должна содержать символ '/'"
+//     )
+//     .refine(
+//       (val) => !val || val.includes("."),
+//       "Ссылка должна содержать символ '.'"
+//     ),
 
-  city: z.enum(
-    ["Москва", "Санкт-Петербург", "Екатеринбург", "Казань", "Краснодар"],
-    {
-      errorMap: () => ({ message: "Выберите город из списка" }),
-    }
-  ),
+//   city: z.enum(
+//     ["Москва", "Санкт-Петербург", "Екатеринбург", "Казань", "Краснодар"],
+//     {
+//       errorMap: () => ({ message: "Выберите город из списка" }),
+//     }
+//   ),
 
-  phone: z
-    .string()
-    .min(1, "Телефон не может быть пустым")
-    .regex(/^\d+$/, "Телефон должен содержать только цифры"),
-});
+//   phone: z
+//     .string()
+//     .min(1, "Телефон не может быть пустым")
+//     .regex(/^\d+$/, "Телефон должен содержать только цифры"),
+// });

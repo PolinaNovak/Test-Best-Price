@@ -1,21 +1,21 @@
-import { createContext, useContext } from "react";
-import { useForm, useFormRes } from "../hooks/useForm";
+// import { createContext, useContext } from "react";
+// import { useForm, useFormRes } from "../hooks/useForm";
 
-const FormContext = createContext<useFormRes | null>(null);
+// const FormContext = createContext<useFormRes | null>(null);
 
-export const useFormContext = () => {
-  const context = useContext(FormContext);
+// export const useFormContext = () => {
+//   const context = useContext(FormContext);
 
-  if (!context) throw new Error("Context creation Error");
+//   if (!context) throw new Error("Context creation Error");
 
-  return context;
-};
+//   return context;
+// };
 
-export const FormProvider = ({ children }: { children: React.ReactNode }) => {
-  const { formData, changeFormData, validateForm } = useForm();
-  return (
-    <FormContext.Provider value={{ formData, changeFormData, validateForm }}>
-      {children}
-    </FormContext.Provider>
-  );
-};
+// export const FormProvider = ({ children }: { children: React.ReactNode }) => {
+//   const { formData, changeFormData, validateForm } = useForm();
+//   return (
+//     <FormContext.Provider value={{ formData, changeFormData, validateForm }}>
+//       {children}
+//     </FormContext.Provider>
+//   );
+// };

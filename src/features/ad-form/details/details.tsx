@@ -25,7 +25,7 @@ export const Details = () => {
               error={errors?.description?.message}
             >
               <Textarea
-                placeholder="Телефон*"
+                placeholder="Описание*"
                 {...field}
                 style={{ height: "160px" }}
               />
